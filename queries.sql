@@ -1,5 +1,86 @@
 /*Queries that provide answers to the questions from all projects.*/
 
+/*Second milestone*/
+
+-- Animals whose species = undefined rool back null
+UPDATE public.animals
+ SET species = 'unespecified';
+ 
+SELECT species from animals
+ ROLLBACK;
+ 
+SELECT species from animals
+
+
+-- Animals set pokemon or digimon
+UPDATE public.animals
+    SET species ='Digimon'
+    WHERE name LIKE '%mon';
+	
+UPDATE public.animals
+    SET species ='Pokemon'
+    WHERE species IS NULL;
+
+-- delete and roll back table
+
+BEGIN;
+    SAVEPOINT deleted_table;
+    DELETE FROM animals;
+    ROLLBACK TO deleted_table;
+COMMIT;
+
+-- Delete all animals born after Jan 1st, 2022, animals' weight to be their weight multiplied by -1.
+--Rollback to the savepoint 
+-- Update all animals' weights that are negative to be their weight multiplied by -1
+
+BEGIN;
+    DELETE FROM animals
+        WHERE date_of_birth > '2022-01-01';
+        
+    SAVEPOINT delete_animals;
+    
+    UPDATE animals SET weight_kg = weight_kg * -1;
+    ROLLBACK TO delete_animals;
+    
+    UPDATE animals SET weight_kg = weight_kg * -1
+    WHERE weight_kg < 0;
+COMMIT;
+
+--milestone 2 queries 
+
+SELECT count(*) FROM animals;
+
+
+SELECT count(*) FROM animals
+    WHERE escape_attempts=0;
+
+
+SELECT avg(weight_kg) FROM animals;
+
+SELECT neutered, avg(escape_attempts) "Average of escape attempts"
+FROM animals
+GROUP BY neutered;
+
+
+SELECT 
+    species, 
+    MIN(weight_KG) "Min weight", 
+    MAX(weight_KG) "Max weight" 
+FROM animals 
+GROUP BY species;
+
+
+SELECT 
+    species, 
+    AVG(escape_attempts) "escape attempts average"
+FROM animals
+WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
+GROUP BY species;
+
+
+
+/* first milestone*/
+
 -- Animals whose name ends in "mon".
 SELECT *
     FROM animals
