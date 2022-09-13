@@ -1,5 +1,46 @@
 /* Populate database with sample data. */
 
+-- milestone_3
+INSERT INTO owners (
+    id,
+	full_name,
+	age      
+)
+VALUES 
+    (1, 'am Smith', 34),
+    (2, 'Jennifer Orwell', 19),
+    (3, 'Bob', 45),
+    (4, 'Melody Pond', 77),
+    (5, 'Dean Winchester', 14),
+    (6, 'Jodie Whittaker', 38)
+
+INSERT INTO species (
+    id,
+	  name
+)
+VALUES 
+    (1, 'pokemon'),
+    (2, 'digimon')
+
+UPDATE public.animals
+     SET owner_id = 1
+   WHERE  name = 'Agumon'
+
+UPDATE public.animals
+     SET owner_id = 2
+   WHERE  name = 'Gabumon' AND name = 'Pikachu'
+
+UPDATE public.animals
+     SET owner_id = 3
+   WHERE  name = 'Plantmon'
+
+UPDATE public.animals
+     SET owner_id = 5
+   WHERE  name = 'Charmander' AND name = 'Squirtle' AND name = 'Blossom'
+   
+UPDATE public.animals
+     SET owner_id = 5
+   WHERE  name = 'Angemon' AND name = 'Boarmon'
 
 --milestone 2
 
