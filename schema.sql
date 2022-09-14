@@ -14,6 +14,11 @@ CREATE TABLE visits (
     vets_id    INT REFERENCES vets(id)
 );
 
+CREATE TABLE specializations (
+    vets_id INT REFERENCES vets(id),
+    species_id INT REFERENCES species(id),    
+);
+
 
 -- milestone_3
 
