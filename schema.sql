@@ -1,4 +1,20 @@
 /* Database schema to keep the structure of entire database. */
+--milestone_4
+
+CREATE TABLE vets (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(60),
+    age INT,
+    date_of_graduation DATE
+)
+
+CREATE TABLE visits (
+    visit_date DATE,
+    animals_id INT REFERENCES animals(id),
+    vets_id    INT REFERENCES vets(id)
+);
+
+
 -- milestone_3
 
 -- animals
